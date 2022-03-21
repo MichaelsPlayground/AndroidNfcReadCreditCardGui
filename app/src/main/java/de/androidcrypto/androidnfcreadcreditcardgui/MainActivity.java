@@ -23,6 +23,8 @@ import com.pro100svitlo.creditCardNfcReader.utils.CardNfcUtils;
 
 public class MainActivity extends AppCompatActivity implements CardNfcAsyncTask.CardNfcInterface {
 
+    // hinweis: die app funktioniert nur auf einem "real" device mit NFC Sensor
+
     // library
     // https://github.com/devnied/EMV-NFC-Paycard-Enrollment
     // mNfcAdapter from
@@ -90,11 +92,6 @@ public class MainActivity extends AppCompatActivity implements CardNfcAsyncTask.
             //###noNfc.setVisibility(View.VISIBLE);
         } else {
             mCardNfcUtils = new CardNfcUtils(this);
-            //mPutCardContent = (TextView) findViewById(R.id.content_putCard);
-            //mCardReadyContent = (LinearLayout) findViewById(R.id.content_cardReady);
-            //mCardNumberText = (TextView) findViewById(android.R.id.text1);
-            //mExpireDateText = (TextView) findViewById(android.R.id.text2);
-            //mCardLogoIcon = (ImageView) findViewById(android.R.id.icon);
             createProgressDialog();
             initNfcMessages();
             mIntentFromCreate = true;
@@ -159,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements CardNfcAsyncTask.
         cardType.setText(mCardNfcAsyncTask.getCardType());
         cardExpiration.setText(mCardNfcAsyncTask.getCardExpireDate());
         cardLeftPinTries.setText(mCardNfcAsyncTask.getmLeftPinTry());
-        //###mExpireDateText.setText(expiredDate);
         parseCardType(cardRawType);
     }
 
@@ -255,8 +251,6 @@ public class MainActivity extends AppCompatActivity implements CardNfcAsyncTask.
         } else if (cardType.equals(CardNfcAsyncTask.CARD_MASTER_CARD)){
             System.out.println("** Master logo **");
             cardLogo.setImageResource(R.drawable.master_logo);
-
-            //###mCardLogoIcon.setImageResource(R.mipmap.master_logo);
         }
     }
 
